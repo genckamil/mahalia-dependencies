@@ -13,7 +13,7 @@ JACK_BUFFER=24                 # argument to alsa parameter -p
 JACK_FRAMES=2                  # argument to alsa parameter -n
 JACK_OPTS=""                   # additional arguments at end of command line
 JACK_FRONT_OPTS="-S"           # additional arguments directly after "jackd"
-NOJACK=1                       # jack will only be started when this is empty
+# NOJACK=1                       # jack will only be started when this is empty
 
 # openMHA settings
 OPENMHA_INTERFACE="0.0.0.0"
