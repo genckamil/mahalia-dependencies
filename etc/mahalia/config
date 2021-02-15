@@ -18,7 +18,7 @@ JACK_FRONT_OPTS="-S"           # additional arguments directly after "jackd"
 # openMHA settings
 OPENMHA_INTERFACE="0.0.0.0"
 OPENMHA_PORT="33337"
-OPENMHA_OPTS="--daemon ?read:/etc/mahalia/generic-hearing-aid/index.cfg"
+OPENMHA_OPTS="--daemon ?read:/etc/mahalia/audiogram-app/MHA_APTA_main.cfg"
 
 HEADSET=amplified # select headset type for which alsa settings will be loaded 
 
