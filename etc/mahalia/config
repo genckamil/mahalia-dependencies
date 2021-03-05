@@ -25,5 +25,8 @@ HEADSET=amplified # select headset type for which alsa settings will be loaded
 # openMHA audiogram configuration path
 export MHA_AUDIOGRAM_CONFIG_PATH="/etc/mahalia/audiogram-app"
 
-#openMHA audiogram signal path
+# openMHA audiogram signal path
 export MHA_AUDIOIGRAM_SIGNAL_PATH="/etc/mahalia/audiogram-app/signals"
+
+# Device serial number
+export SERIAL_NUMBER="9890031"
