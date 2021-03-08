@@ -8,7 +8,7 @@ WIFI_SSID="Mahalia_\$SERIAL_NUMBER"
 # jack settings
 JACK_PRIORITY=90               # argument to parameter -P
 JACK_SOUNDCARD=hw:boneaudioext # argument to alsa parameter -d
-JACK_SAMPLERATE=44100          # argument to alsa parameter -r
+JACK_SAMPLERATE=48000          # argument to alsa parameter -r
 JACK_BUFFER=128                 # argument to alsa parameter -p
 JACK_FRAMES=2                  # argument to alsa parameter -n
 JACK_OPTS=""                   # additional arguments at end of command line
