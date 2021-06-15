@@ -57,7 +57,7 @@ ssh-keygen -f /etc/ssh/ssh_host_dsa_key -t dsa -N ""
 update-rc.d ssh defaults
 systemctl start ssh
 
-# Expand root file system
+## Expand root file system
 fdisk /dev/mmcblk0 <<FDISK
 d
 2
