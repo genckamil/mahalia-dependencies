@@ -1,0 +1,83 @@
+#The number of channels to process
+nchannels_in = 4
+#Number of frames to be processed in each block.
+fragsize = 128
+#Sampling rate - has to be the same as the input file
+srate = 16000
+mhalib = transducers
+iolib = MHAIOJack
+
+# 4 channel input: front-left, front-right, rear-left, rear-right
+io.con_in = [system:capture_1 system:capture_2 system:capture_5 system:capture_6]
+#2 channel output: BTE speaker left, BTE speaker right 
+io.con_out = [system:playback_1 system:playback_2]
+
+#Define in and out calibration
+mha.calib_in.peaklevel = [117 117 117 117]
+mha.calib_out.peaklevel = [108 108]
+mha.plugin_name = mhachain
+
+#Define algorithm chain inside tranducers
+mha.mhachain.algos = [save_wave:openMHA ...
+                      ac2lsl lsl2ac ...
+		      acrec:openMHA_time_series ...
+		      acrec:openMHA_time_stamps ...
+             	      acrec:openMHA_clock_corrections ...
+             	      acrec:smarting_time_series ...
+             	      acrec:smarting_time_stamps ...
+             	      acrec:smarting_clock_corrections ...
+		      route]
+
+# Route the frontal input channels to the output
+mha.mhachain.route.out = [:0 :1]
+
+mha.mhachain.ac2lsl.vars = [openMHA]
+mha.mhachain.ac2lsl.source_id=mha
+#Operations on LSL streams are not rt-safe, override
+#rt safety checks
+mha.mhachain.ac2lsl.rt_strict=no
+
+
+
+#lsl2ac - Subscribe to sender openMHA and Smartphone
+mha.mhachain.lsl2ac.streams=[openMHA test_EEG_Stream]
+mha.mhachain.lsl2ac.overrun_behavior = ignore
+
+# acrec - openMHA time series
+mha.mhachain.openMHA_time_series.prefix = /home/mha/openMHA_time_series
+mha.mhachain.openMHA_time_series.use_date = no
+mha.mhachain.openMHA_time_series.varname = openMHA
+mha.mhachain.openMHA_time_series.record = yes
+
+# acrec - openMHA time stamps
+mha.mhachain.openMHA_time_stamps.prefix = /home/mha/openMHA_time_stamps
+mha.mhachain.openMHA_time_stamps.use_date = no
+mha.mhachain.openMHA_time_stamps.varname = openMHA_ts
+mha.mhachain.openMHA_time_stamps.record = yes
+
+# acrec - openMHA clock corrections
+mha.mhachain.openMHA_clock_corrections.prefix = /home/mha/openMHA_clock_corrections
+mha.mhachain.openMHA_clock_corrections.use_date = no
+mha.mhachain.openMHA_clock_corrections.varname = openMHA_tc
+mha.mhachain.openMHA_clock_corrections.record = yes
+
+
+# acrec - Smarting time series
+mha.mhachain.smarting_time_series.prefix = /home/mha/smarting_time_series
+mha.mhachain.smarting_time_series.use_date = no
+mha.mhachain.smarting_time_series.varname =  test_EEG_Stream
+mha.mhachain.smarting_time_series.record = yes
+
+# acrec - Smarting time stamps
+mha.mhachain.smarting_time_stamps.prefix = /home/mha/smarting_time_stamps
+mha.mhachain.smarting_time_stamps.use_date = no
+mha.mhachain.smarting_time_stamps.varname =  test_EEG_Stream_ts
+mha.mhachain.smarting_time_stamps.record = yes
+
+# acrec - smarting clock corrections
+mha.mhachain.smarting_clock_corrections.prefix = /home/mha/smarting_clock_corrections
+mha.mhachain.smarting_clock_corrections.use_date = no
+mha.mhachain.smarting_clock_corrections.varname =  test_EEG_Stream_tc
+mha.mhachain.smarting_clock_corrections.record = yes
+
+cmd=start
