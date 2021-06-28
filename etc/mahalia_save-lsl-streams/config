@@ -20,3 +20,6 @@ export MHA_SIGNAL_PATH="/home/mha"
 
 # Device serial number
 export SERIAL_NUMBER="9890031"
+
+# PATH to the LSL configuration file
+export LSLAPICFG="/etc/lsl_api/lsl_api.cfg"
