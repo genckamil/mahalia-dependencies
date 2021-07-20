@@ -75,6 +75,10 @@ rm -f /etc/rc.local
 EOF
 chmod a+x /etc/rc.local
 
+# Install Python libraries
+pip3 install cbitstruct
+pip3 install pylsl
+
 #################################################
 # Clear all caches
 #################################################

@@ -15,6 +15,7 @@ if [ "$1" = 'configure' ]; then
 	# setup permissions
 	chown -R mha:mha /etc/mahalia_generic-hearing-aid
 	chown -R mha:mha /etc/mahalia_calibration
+	chown -R mha:mha /etc/mahalia_save-lsl-streams
 	
 	# setup dnsmasq & hostapd
 	echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" > /etc/default/hostapd
@@ -33,6 +34,7 @@ if [ "$1" = 'configure' ]; then
 	#deb-systemd-invoke enable mahalia-flasher
 	deb-systemd-invoke enable mahalia-batcat
 	deb-systemd-invoke enable mahalia-nodered
+	deb-systemd-invoke enable mahalia-ble-perihperal
 
         # The node-red package installs a "socket" that we need to disable
         rm -f /etc/systemd/system/sockets.target.wants/nodered.socket

@@ -42,6 +42,7 @@ if [ "$1" == "start" ]; then
 	echo none > $MAHALIA_LED/trigger
 
 	# stop programs from previous attempts
+	killall -s SIGTERM python3.7
 	killall -s SIGTERM mha
   if [ "x$NOJACK" != "x" ]; then
 	    killall -s SIGTERM jackd
@@ -80,6 +81,9 @@ if [ "$1" == "start" ]; then
 	# turn LED on
 	echo default-on > $MAHALIA_LED/trigger
 
+	# start python for zephyr connection
+	python3.7 $ZEPHYR_PATH/main.py --address=$ZEPHYR_MAC --stream=ecg,accel,respiration
+	
 	# start openMHA
 	#source thismha.sh
 	mha --interface=$OPENMHA_INTERFACE --port=$OPENMHA_PORT $OPENMHA_OPTS

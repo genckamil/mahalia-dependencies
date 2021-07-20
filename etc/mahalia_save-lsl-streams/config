@@ -2,7 +2,7 @@
 JACK_PRIORITY=90               # argument to parameter -P
 JACK_SOUNDCARD=hw:boneaudioext # argument to alsa parameter -d
 JACK_SAMPLERATE=16000          # argument to alsa parameter -r
-JACK_BUFFER=160                # argument to alsa parameter -p
+JACK_BUFFER=64                 # argument to alsa parameter -p
 JACK_FRAMES=2                  # argument to alsa parameter -n
 JACK_OPTS=""                   # additional arguments at end of command line
 JACK_FRONT_OPTS="-S"           # additional arguments directly after "jackd"
@@ -11,7 +11,7 @@ JACK_FRONT_OPTS="-S"           # additional arguments directly after "jackd"
 # openMHA settings
 OPENMHA_INTERFACE="0.0.0.0"
 OPENMHA_PORT="33337"
-OPENMHA_OPTS="--daemon ?read:/etc/mahalia/save_audio_EEG_openMHA_PHL.cfg"
+OPENMHA_OPTS="?read:/etc/mahalia/save_audio_EEG_openMHA_PHL.cfg"
 
 HEADSET=amplified # select headset type for which alsa settings will be loaded 
 
@@ -20,6 +20,12 @@ export MHA_SIGNAL_PATH="/home/mha"
 
 # Device serial number
 export SERIAL_NUMBER="9890031"
+
+# Zephyr Python code path
+export ZEPHYR_PATH="/etc/mahalia/App-Zephyr-main"
+
+# Zephyr BioHarness MAC address
+export ZEPHYR_MAC="A4:34:F1:EA:24:1B"
 
 # PATH to the LSL configuration file
 export LSLAPICFG="/etc/lsl_api/lsl_api.cfg"
