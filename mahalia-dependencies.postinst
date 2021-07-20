@@ -34,7 +34,6 @@ if [ "$1" = 'configure' ]; then
 	#deb-systemd-invoke enable mahalia-flasher
 	deb-systemd-invoke enable mahalia-batcat
 	deb-systemd-invoke enable mahalia-nodered
-	deb-systemd-invoke enable mahalia-ble-perihperal
 
         # The node-red package installs a "socket" that we need to disable
         rm -f /etc/systemd/system/sockets.target.wants/nodered.socket
